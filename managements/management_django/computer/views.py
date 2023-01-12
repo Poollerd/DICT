@@ -41,8 +41,8 @@ class ComputerAllViewSet(viewsets.ModelViewSet):
     queryset = Computer.objects.all()
     pagination_class = ComputerPagination
 
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('computer_install_place', 'computer_type', 'computer_name', 'computer_brand')
+    # filter_backends = (filters.SearchFilter,)
+    # search_fields = ('computer_install_place', 'computer_type', 'computer_name', 'computer_brand')
 
 
 class UpgradecomputerViewSet(viewsets.ModelViewSet):

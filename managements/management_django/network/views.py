@@ -33,8 +33,9 @@ class NetworkViewSet(viewsets.ModelViewSet):
 class NetworkAllViewSet(viewsets.ModelViewSet):
     serializer_class = NetworkSerializer
     queryset = Network.objects.all()
+    print(queryset)
     pagination_class = NetworkPagination
 
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('network_install_place', 'network_type', 'network_brand', 'network_name', 'network_name_in_system')
+    # filter_backends = (filters.SearchFilter,)
+    # search_fields = ('network_install_place', 'network_type', 'network_brand', 'network_name', 'network_name_in_system')
 

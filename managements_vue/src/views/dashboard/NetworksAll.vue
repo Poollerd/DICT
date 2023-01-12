@@ -26,7 +26,7 @@
             </div>
 
             <div class="column is-12">
-                <template v-if="networks.length">
+                <template v-if="networksall.length">
                     <table class="table is-fullwidth">
                         <thead>
                             <tr>
@@ -52,7 +52,7 @@
 
                         <tbody>
                             <tr
-                                v-for="network in networks"
+                                v-for="network in networksall"
                                 v-bind:key="network.id">
                                     <td>{{ network.network_install_place }}</td>
                                     <td>{{ network.network_type }}</td>
@@ -63,7 +63,7 @@
                                     <td>{{ network.network_mac_address }}</td> -->
                                     <!-- <td>{{ network.network_ip_address  }}</td> -->
                                     <!-- <td>{{ network.network_got }}</td> -->
-                                    <!-- <td>{{ network.network_serial_number }}</td> -->
+                                    <!-- <td>{{ netw                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ork.network_serial_number }}</td> -->
                                     <td>{{ network.network_person_responsible }}</td>
                                     <td>{{ network.network_person_responsible_phone }}</td>
                                     <!-- <td>{{ team.team_name }}</td> -->
@@ -144,7 +144,7 @@
                 this.showNextButton = false
                 this.showPreviousButton = false
                 await axios
-                    .get(`/api/dict/networks/`)
+                    .get(`/api/dict/networksall/`)
                     .then(response => {
                         console.log(response.data)
                         this.num_networks = response.data.count
@@ -152,9 +152,9 @@
 
                 await axios
                     // .get(`/api/dict/networks/`)
-                    .get(`/api/dict/networks/?page=${this.currentPage}&search=${this.query}`)
+                    .get(`/api/dict/networksall/?page=${this.currentPage}&search=${this.query}`)
                     .then(response => {
-                        this.networks = response.data.results
+                        this.networksall = response.data.results
                         // this.networks = response.data
                         if (response.data.next) {
                             this.showNextButton = true

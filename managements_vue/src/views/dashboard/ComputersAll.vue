@@ -11,7 +11,7 @@
                 <router-link 
                     to="/dashboard/computers/add-Computer"
                 >+ ข้อมูล Computers ในหน่วย</router-link>
-                <form @submit.prevent="getComputers">
+                <form @submit.prevent="getAllComputers">
                     <div class="field has-addons">
                         <div class="control">
                             <input type="text" class="input" v-model="query">
@@ -23,7 +23,7 @@
                 </form>
             </div>
             <div class="column is-12">
-                <template v-if="computers.length">
+                <template v-if="computersall.length">
                     <table class="table is-fullwidth">
                         <thead>
                             <tr>
@@ -41,7 +41,7 @@
 
                         <tbody>
                             <tr
-                                v-for="computer in computers"
+                                v-for="computer in computersall"
                                 v-bind:key="computer.id">
                                     <td>{{ computer.computer_install_place }}</td>
                                     <td>{{ computer.computer_type }}</td>
@@ -81,7 +81,7 @@
 
         data() {
             return {
-                computers: [],
+                computersall: [],
                 showNextButton: false,
                 showPreviousButton: false,
                 currentPage: 1,
@@ -124,16 +124,16 @@
                 this.showPreviousButton = false
 
                 await axios
-                    .get(`/api/dict/computers/`)
+                    .get(`/api/dict/computersall/`)
                     .then(response => {
                         console.log(response.data)
                         this.num_computers = response.data.count
                     })
                 await axios
                     // .get(`/api/dict/computers/`)
-                    .get(`/api/dict/computers/?page=${this.currentPage}&search=${this.query}`)
+                    .get(`/api/dict/computersall/?page=${this.currentPage}&search=${this.query}`)
                     .then(response => {
-                        this.computers = response.data.results
+                        this.computersall = response.data.results
                         // this.computers = response.data
                         if (response.data.next) {
                             this.showNextButton = true
